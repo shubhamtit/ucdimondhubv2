@@ -1,0 +1,820 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" type="image/jpeg" href="https://i.postimg.cc/hjJXc4p3/icon.png">
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=AW-17961134935">
+</script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'AW-17961134935');
+</script>
+
+<title>EliteUCHub - Instant UC & Diamonds</title>
+<style>
+/* ───── RESET & BASE ───── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  background: #080c10;
+  min-height: 100vh;
+  color: #fff;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+a { color: inherit; text-decoration: none; }
+button { font-family: inherit; }
+input { font-family: inherit; }
+
+/* ───── HELPERS ───── */
+.gradient-text {
+  color: #2dd4bf;
+}
+
+/* ───── HEADER ───── */
+header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 18px;
+  background: rgba(8, 12, 16, 0.92);
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+  position: sticky; top: 0; z-index: 100;
+  transition: background 0.3s, backdrop-filter 0.3s, box-shadow 0.3s;
+}
+header.scrolled {
+  background: rgba(8, 12, 16, 0.6);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-bottom: 1px solid rgba(45, 212, 191, 0.15);
+  box-shadow: 0 4px 24px rgba(0,0,0,0.5);
+}
+.header-logo { display: flex; align-items: center; gap: 12px; }
+.logo-box {
+  width: 44px; height: 44px;
+  border-radius: 10px;
+  display: flex; align-items: center; justify-content: center;
+  font-weight: 800; font-size: 18px;
+  overflow: hidden;
+  background: #1a2535;
+}
+header h1 { font-size: 1.25rem; font-weight: 700; color: #fff; }
+.hamburger {
+  background: #1a2535; border: none; color: #fff; cursor: pointer;
+  padding: 8px; border-radius: 8px;
+  display: flex; align-items: center; justify-content: center;
+}
+
+/* ───── SIDE MENU ───── */
+.menu-overlay {
+  position: fixed; inset: 0; z-index: 999;
+  background: rgba(0,0,0,0.7);
+  opacity: 0; visibility: hidden;
+  transition: opacity .3s, visibility .3s;
+}
+.menu-overlay.active { opacity: 1; visibility: visible; }
+
+.side-menu {
+  position: fixed; top: 0; right: -100%; width: 80%; max-width: 320px;
+  height: 100vh; background: #0e1520;
+  z-index: 1000; transition: right .3s ease;
+  box-shadow: -5px 0 20px rgba(0,0,0,.5);
+  overflow-y: auto;
+  border-left: 1px solid rgba(255,255,255,0.06);
+}
+.side-menu.active { right: 0; }
+
+.menu-header {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 24px 20px 16px;
+  border-bottom: 1px solid #1e2a3a;
+}
+.menu-header .logo-box { width: 44px; height: 44px; font-size: 16px; }
+.menu-header h2 { font-size: 1.1rem; font-weight: 700; }
+.menu-header p { font-size: .72rem; color: #64748b; }
+.menu-close { background: none; border: none; color: #64748b; cursor: pointer; font-size: 24px; line-height: 1; }
+
+.menu-item {
+  display: flex; align-items: center; gap: 16px;
+  padding: 14px 20px; cursor: pointer; transition: background .2s;
+  color: #cbd5e1; font-weight: 500; font-size: .95rem;
+}
+.menu-item:active { background: rgba(45,212,191,.1); }
+.menu-item svg { width: 22px; height: 22px; flex-shrink: 0; }
+.menu-divider { border: none; border-top: 1px solid #1e2a3a; margin: 8px 0; }
+
+.menu-user {
+  display: flex; align-items: center; gap: 12px;
+  background: #1a2535; border-radius: 12px;
+  padding: 14px; margin: 16px;
+}
+.menu-user-avatar {
+  width: 44px; height: 44px; border-radius: 50%;
+  background: linear-gradient(135deg, #2dd4bf, #0ea5e9);
+  display: flex; align-items: center; justify-content: center;
+  font-weight: 700; font-size: 18px; flex-shrink: 0;
+}
+.menu-user-info p { font-size: .85rem; font-weight: 600; }
+.menu-user-info span { font-size: .72rem; color: #64748b; }
+
+/* ───── MAIN LAYOUT ───── */
+main { padding: 20px 16px 80px; max-width: 480px; margin: 0 auto; }
+
+/* ───── TITLE SECTION ───── */
+.title-section { display: none; }
+.badges { display: none; }
+
+/* ───── SECTION CARDS ───── */
+.section-card {
+  background: transparent;
+  border-radius: 0;
+  padding: 0;
+  margin-bottom: 0;
+  border: none;
+}
+.section-card h3 { font-size: 1.1rem; font-weight: 700; margin-bottom: 18px; }
+.section-title-row { display: flex; align-items: center; gap: 10px; margin-bottom: 18px; }
+.section-title-row svg { width: 20px; height: 20px; flex-shrink: 0; }
+.section-title-row h3 { margin-bottom: 0; font-size: 1.05rem; }
+
+/* ───── UNIFIED MAIN CARD ───── */
+.main-card {
+  position: relative;
+  background: #161f2c;
+  border-radius: 20px;
+  padding: 24px 18px;
+  margin-bottom: 16px;
+  border: 1px solid rgba(45, 212, 191, 0.3);
+  box-shadow:
+    0 0 18px rgba(45, 212, 191, 0.1),
+    0 0 40px rgba(45, 212, 191, 0.05);
+}
+.main-card > * { position: relative; z-index: 1; }
+
+.card-divider {
+  border: none;
+  border-top: 1px solid rgba(255,255,255,0.06);
+  margin: 22px 0;
+}
+
+/* ───── GAME SECTION ───── */
+.game-section-wrap {
+  background: transparent;
+  border-radius: 0;
+  padding: 0;
+  border: none;
+  margin-bottom: 0;
+}
+.game-section-wrap::before { display: none; }
+.game-section-wrap::after { display: none; }
+.game-section-wrap h3 {
+  font-size: 1.4rem; font-weight: 700;
+  margin-bottom: 6px;
+}
+.game-section-wrap .subtitle {
+  color: #64748b; font-size: .88rem; margin-bottom: 20px;
+}
+
+/* ───── GAME CARDS ───── */
+.game-grid {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 12px;
+}
+.game-card {
+  background: #0f1720;
+  border-radius: 12px;
+  padding: 14px 12px;
+  cursor: pointer;
+  display: flex; align-items: center; gap: 12px;
+  border: 2px solid rgba(255,255,255,0.05);
+  transition: border-color .2s, transform .15s, box-shadow .2s;
+}
+.game-card:active { transform: scale(.97); }
+.game-card.selected {
+  border-color: #2dd4bf;
+  border-width: 2.5px;
+  box-shadow: 0 0 0 3px rgba(45,212,191,0.15), 0 0 16px rgba(45,212,191,0.2);
+}
+
+/* icon (game thumbnail) */
+.game-card-icon {
+  width: 52px; height: 52px; min-width: 52px;
+  border-radius: 12px;
+  display: flex; align-items: center; justify-content: center;
+  position: relative;
+  overflow: hidden;
+  background: #080c10;
+  padding: 3px;
+}
+.game-card-icon img {
+  width: 100%; height: 100%;
+  object-fit: contain;
+  border-radius: 9px;
+  display: block;
+}
+
+/* text block to the right of the icon */
+.game-card-text { display: flex; flex-direction: column; }
+.game-card p.name { font-weight: 700; font-size: .95rem; line-height: 1.3; }
+.game-card p.sub  { color: #64748b; font-size: .75rem; margin-top: 2px; }
+
+.badge-max {
+  position: absolute; top: -6px; right: -6px;
+  background: #eab308; color: #000; font-size: .6rem; font-weight: 800;
+  padding: 2px 5px; border-radius: 5px; transform: rotate(12deg);
+}
+
+/* ───── PLAYER ID INPUT ───── */
+.input-wrap { position: relative; margin-bottom: 8px; }
+.input-wrap input {
+  width: 100%; background: #0c1219; color: #fff;
+  border: 1px solid rgba(255,255,255,0.08); border-radius: 10px;
+  padding: 14px 48px 14px 16px; font-size: .95rem; outline: none;
+  transition: border-color .3s;
+}
+.input-wrap input:focus { border-color: #2dd4bf; }
+.input-wrap input::placeholder { color: #4a5568; }
+.input-wrap .check-icon {
+  position: absolute; right: 16px; top: 50%; transform: translateY(-50%);
+  display: none; width: 22px; height: 22px; color: #22c55e;
+}
+.error-msg { color: #f87171; font-size: .82rem; margin-top: 6px; min-height: 18px; }
+.security-note {
+  display: flex; align-items: flex-start; gap: 8px;
+  color: #4a5568; font-size: .8rem; margin: 10px 0 16px;
+}
+.security-note svg { width: 16px; height: 16px; flex-shrink: 0; margin-top: 2px; }
+
+/* ───── VERIFY BUTTON ───── */
+.verify-btn {
+  display: inline-flex; align-items: center; gap: 8px;
+  background: #2dd4bf; color: #0d1117;
+  border: none; border-radius: 8px;
+  padding: 12px 24px; font-size: .95rem; font-weight: 700;
+  cursor: pointer; transition: background .2s, opacity .2s;
+}
+.verify-btn:active:not(:disabled) { background: #14b8a6; }
+.verify-btn svg { width: 18px; height: 18px; flex-shrink: 0; }
+.verify-btn:disabled { background: #16a34a; color: #fff; opacity: .9; cursor: not-allowed; }
+
+/* ───── PACKAGE GRID ───── */
+.pkg-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+.pkg-grid.hidden { display: none; }
+.pkg-card {
+  background: #0f1720; border-radius: 12px; padding: 16px 12px;
+  cursor: pointer; text-align: left;
+  border: 2px solid rgba(255,255,255,0.05);
+  transition: border-color .2s, transform .15s, box-shadow .2s;
+}
+.pkg-card:active { transform: scale(.97); }
+.pkg-card.selected {
+  border-color: #2dd4bf;
+  border-width: 2.5px;
+  background: rgba(45,212,191,0.07);
+  box-shadow: 0 0 0 3px rgba(45,212,191,0.15), 0 0 16px rgba(45,212,191,0.2);
+}
+.pkg-icon { display: none; }
+.pkg-icon.uc   { display: none; }
+.pkg-icon.dia  { display: none; }
+.pkg-icon svg  { display: none; }
+.pkg-icon img  { display: none; }
+.pkg-icon .badge-uc { display: none; }
+.pkg-card p.pkg-name  { font-weight: 600; font-size: .92rem; color: #fff; }
+.pkg-card p.pkg-sub   { font-size: .75rem; color: #4a5568; margin: 2px 0 6px; }
+.pkg-card p.pkg-price { font-size: 1.1rem; font-weight: 700; color: #2dd4bf; margin-top: 4px; }
+
+/* ───── CHECKOUT ───── */
+.checkout { display: none; margin-bottom: 16px; }
+.checkout.visible { display: block; }
+.checkout-card {
+  background: #161f2c; border-radius: 16px; padding: 20px;
+  border: 1px solid rgba(45, 212, 191, 0.3);
+  box-shadow: 0 0 18px rgba(45, 212, 191, 0.08), 0 0 40px rgba(45, 212, 191, 0.04);
+}
+.checkout-summary {
+  display: flex; justify-content: space-between; align-items: center;
+  margin-bottom: 6px;
+}
+.checkout-summary .lbl { color: #4a5568; font-size: .82rem; }
+.checkout-summary .val { color: #fff; font-weight: 600; font-size: .95rem; }
+.checkout-total {
+  display: flex; justify-content: space-between; align-items: center;
+  margin-bottom: 18px;
+}
+.checkout-total .lbl { color: #4a5568; font-size: .82rem; }
+.checkout-total .val { color: #fff; font-weight: 700; font-size: 1.1rem; }
+/* hide old checkout-row layout */
+.checkout-row { display: none; }
+.checkout-left { display: none; }
+.checkout-right { display: none; }
+.pay-btn {
+  width: 100%; display: flex; align-items: center; justify-content: center; gap: 10px;
+  background: #2dd4bf;
+  color: #080c10; border: none; border-radius: 10px;
+  padding: 16px; font-size: 1rem; font-weight: 700; cursor: pointer;
+  transition: opacity .2s;
+}
+.pay-btn:active { opacity: .85; }
+.pay-btn svg { display: none; }
+.pay-footer { text-align: center; color: #4a5568; font-size: .75rem; margin-top: 10px; }
+.pay-footer svg { display: none; }
+
+/* ───── WHY SECTION ───── */
+.why-section {
+  background: #161f2c; border-radius: 16px; padding: 22px 18px;
+  border: 1px solid rgba(255,255,255,0.07); margin-bottom: 16px;
+}
+.why-section h3 { font-size: 1.1rem; font-weight: 700; margin-bottom: 18px; }
+.why-item {
+  display: flex; align-items: center; gap: 14px;
+  padding: 6px 0; font-size: .9rem; color: #94a3b8;
+}
+.why-item svg { width: 22px; height: 22px; flex-shrink: 0; color: #2dd4bf; }
+
+/* ───── FOOTER ───── */
+footer { background: #080c10; border-top: 1px solid rgba(255,255,255,0.06); padding: 32px 20px; }
+.footer-inner { max-width: 480px; margin: 0 auto; }
+.footer-brand { display: flex; align-items: center; gap: 12px; margin-bottom: 10px; }
+.footer-brand .logo-box { width: 48px; height: 48px; font-size: 18px; border-radius: 10px; }
+.footer-brand h2 { font-size: 1.2rem; font-weight: 700; }
+.footer-brand h2 span { color: #fff; }
+footer > .footer-inner > p { color: #4a5568; font-size: .82rem; margin-bottom: 24px; }
+.footer-links h3 { font-size: .9rem; font-weight: 700; margin-bottom: 14px; color: #fff; }
+.footer-links a { display: block; color: #4a5568; font-size: .85rem; margin-bottom: 10px; transition: color .2s; }
+.footer-links a:hover { color: #fff; }
+.footer-copy { border-top: 1px solid rgba(255,255,255,0.06); margin-top: 24px; padding-top: 18px; text-align: center; color: #4a5568; font-size: .75rem; }
+.footer-tagline { text-align: center; color: #2a3a4a; font-size: .72rem; margin-top: 6px; }
+
+/* ───── POPUP MODAL ───── */
+.popup-overlay {
+  display: none;
+  position: fixed; top: 0; right: 0; bottom: 0; left: 0;
+  z-index: 9999;
+  background: rgba(0,0,0,.72);
+  -webkit-backdrop-filter: blur(6px);
+  backdrop-filter: blur(6px);
+  align-items: center; justify-content: center;
+}
+.popup-overlay.open { display: flex; }
+
+.popup-card {
+  position: relative; background: #161f2c; border-radius: 16px;
+  padding: 28px 22px; max-width: 400px; width: calc(100% - 32px);
+  border: 1px solid rgba(45, 212, 191, 0.25);
+  box-shadow: 0 25px 50px rgba(0,0,0,.7);
+}
+.popup-icon-wrap {
+  width: 80px; height: 80px; border-radius: 50%; margin: 0 auto 18px;
+  background: rgba(45,212,191,.1);
+  border: 3px solid #2dd4bf;
+  display: flex; align-items: center; justify-content: center;
+}
+.popup-icon-wrap svg { width: 44px; height: 44px; color: #2dd4bf; }
+.popup-card h2 { text-align: center; font-size: 1.4rem; font-weight: 700; color: #2dd4bf; margin-bottom: 6px; }
+.popup-card > p { text-align: center; color: #4a5568; margin-bottom: 20px; }
+.popup-details {
+  background: #0c1219; border-radius: 12px; padding: 16px;
+  margin-bottom: 20px;
+}
+.popup-row { display: flex; justify-content: space-between; padding: 6px 0; }
+.popup-row + .popup-row { border-top: 1px solid rgba(255,255,255,.05); }
+.popup-row .lbl { color: #4a5568; font-size: .9rem; }
+.popup-row .val { color: #fff; font-weight: 600; font-size: .9rem; }
+.popup-confirm {
+  width: 100%; background: #2dd4bf;
+  color: #0d1117; border: none; border-radius: 10px;
+  padding: 14px; font-size: 1rem; font-weight: 700; cursor: pointer;
+  transition: opacity .2s;
+}
+.popup-confirm:active { opacity: .85; }
+
+/* ───── label ───── */
+label { display: block; color: #94a3b8; font-weight: 500; font-size: .85rem; margin-bottom: 8px; }
+</style>
+</head>
+<body>
+
+<!-- ═══ MENU OVERLAY ═══ -->
+<div class="menu-overlay" id="menuOverlay" onclick="toggleMenu()"></div>
+
+<!-- ═══ SIDE MENU ═══ -->
+<div class="side-menu" id="sideMenu">
+  <div class="menu-header">
+    <div style="display:flex;align-items:center;gap:10px;">
+      <div class="logo-box">TR</div>
+      <div><h2>EliteUCHub</h2><p>Official Store</p></div>
+    </div>
+    <button class="menu-close" onclick="toggleMenu()">✕</button>
+  </div>
+  <nav>
+    <div class="menu-item" onclick="toggleMenu()">
+      <svg fill="none" stroke="#c084fc" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/></svg>
+      Home
+    </div>
+    <!-- <div class="menu-item" onclick="toggleMenu()">
+      <svg fill="none" stroke="#60a5fa" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"/></svg>
+      My Orders
+    </div>
+    <div class="menu-item" onclick="toggleMenu()">
+      <svg fill="none" stroke="#4ade80" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+      Wallet
+    </div>
+    <div class="menu-item" onclick="toggleMenu()">
+      <svg fill="none" stroke="#facc15" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v13m0-13V6a2 2 0 112 2h-2zm0 0V5.5A2.5 2.5 0 109.5 8H12zm-7 4h14M5 12a2 2 0 110-4h14a2 2 0 110 4M5 12v7a2 2 0 002 2h10a2 2 0 002-2v-7"/></svg>
+      Rewards
+    </div>
+    <div class="menu-item" onclick="toggleMenu()">
+      <svg fill="none" stroke="#f472b6" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z"/></svg>
+      Refer &amp; Earn
+    </div>
+    <hr class="menu-divider">
+    <div class="menu-item" onclick="toggleMenu()">
+      <svg fill="none" stroke="#94a3b8" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"/><circle cx="12" cy="12" r="3" stroke-width="2"/></svg>
+      Settings
+    </div>
+    <div class="menu-item" onclick="toggleMenu()">
+      <svg fill="none" stroke="#94a3b8" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+      Help &amp; Support
+    </div> -->
+  </nav>
+  <!-- <div class="menu-user">
+    <div class="menu-user-avatar">U</div>
+    <div class="menu-user-info"><p>User Account</p><span><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="3a4f495f487a5f425b574a565f14595557">[email&#160;protected]</a></span></div>
+  </div> -->
+</div>
+
+<!-- ═══ VERIFICATION POPUP ═══ -->
+<div class="popup-overlay" id="verificationPopup" onclick="if(event.target===this)closePopup()">
+  <div class="popup-card">
+    <div class="popup-icon-wrap">
+      <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"/></svg>
+    </div>
+    <h2>Player ID Verified</h2>
+    <p>Player ID verified successfully!</p>
+    <div class="popup-details">
+      <div class="popup-row"><span class="lbl">Player Id:</span><span class="val" id="popupPlayerId">—</span></div>
+      <div class="popup-row"><span class="lbl">Username:</span><span class="val">verified</span></div>
+    </div>
+    <button class="popup-confirm" onclick="confirmVerification()">Confirm</button>
+  </div>
+</div>
+
+<!-- ═══ HEADER ═══ -->
+<header>
+  <div class="header-logo">
+    <div class="logo-box"><img src="https://i.postimg.cc/hjJXc4p3/icon.png" alt="Logo" style="width: 100%; height: 100%; object-fit: cover; border-radius: 12px;"></div>
+    <h1>EliteUCHub</h1>
+  </div>
+  <button class="hamburger" onclick="toggleMenu()">
+    <svg width="28" height="28" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
+  </button>
+</header>
+
+<!-- ═══ MAIN ═══ -->
+<main>
+
+  <!-- Title -->
+  <div class="title-section">
+    <h2 class="gradient-text">EliteUCHub</h2>
+    <p>Instant UC &amp; Diamonds Delivered</p>
+    <div class="badges">
+      <div class="badge badge-purple">
+        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+        100% Success
+      </div>
+      <div class="badge badge-blue">
+        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" stroke-width="2"/><path stroke-linecap="round" stroke-width="2" d="M12 6v6l4 2"/></svg>
+        Fast · Safe · Trusted
+      </div>
+    </div>
+  </div>
+
+  <!-- UNIFIED CARD: Select Game + Player ID + Choose Package -->
+  <div class="main-card">
+
+    <!-- Select Game -->
+    <div class="game-section-wrap">
+      <h3>Direct Game Top-Up</h3>
+      <p class="subtitle">Enter your Player ID, pick a package, and proceed to pay. No cart — instant purchase flow.</p>
+      <label style="margin-bottom:10px;">Select Game</label>
+      <div class="game-grid">
+        <div class="game-card selected" id="cardBgmi" onclick="selectGame('bgmi')">
+          <div class="game-card-icon bgmi">
+            <img src="https://topup-crazy.com/uploads/media/692fd8535a77f_1764743251.png" alt="BGMI">
+          </div>
+          <div class="game-card-text">
+            <p class="name">BGMI</p>
+            <p class="sub">Official UC Seller</p>
+          </div>
+        </div>
+        <div class="game-card" id="cardFf" onclick="selectGame('freefire')">
+          <div class="game-card-icon ff">
+            <img src="https://topup-crazy.com/uploads/media/692fd8583e26e_1764743256.png" alt="Free Fire">
+            <span class="badge-max">MAX</span>
+          </div>
+          <div class="game-card-text">
+            <p class="name">Free Fire</p>
+            <p class="sub">Official Diamond Top-up Seller</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <hr class="card-divider">
+
+    <!-- Player Information -->
+    <div class="section-card">
+      <label>Player ID</label>
+      <div class="input-wrap">
+        <input type="text" id="playerId" placeholder="Enter Player ID" maxlength="15" oninput="validatePlayerId(this)">
+        <svg class="check-icon" id="checkIcon" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg>
+      </div>
+      <p class="error-msg" id="errorMsg"></p>
+      <div class="security-note">
+        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
+        <span>Tip: Double-check your Player ID. We never ask for passwords/OTPs.</span>
+      </div>
+      <button class="verify-btn" id="verifyBtn" onclick="showPopup()">
+        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+        <span id="verifyBtnText">Verify Player ID</span>
+      </button>
+    </div>
+
+    <hr class="card-divider">
+
+    <!-- Choose Package -->
+    <div class="section-card">
+      <div class="section-title-row">
+        <svg fill="none" stroke="#2dd4bf" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"/></svg>
+        <h3>Choose Package</h3>
+      </div>
+
+      <!-- BGMI packages -->
+      <div class="pkg-grid" id="bgmiPkgs">
+        <div class="pkg-card" onclick="selectPackage(this,'4200 UC','₹399')"><p class="pkg-name">4200 UC</p><p class="pkg-sub">Instant processing</p><p class="pkg-price">₹399</p></div>
+        <div class="pkg-card" onclick="selectPackage(this,'5400 UC','₹499')"><p class="pkg-name">5400 UC</p><p class="pkg-sub">Instant processing</p><p class="pkg-price">₹499</p></div>
+        <div class="pkg-card" onclick="selectPackage(this,'9250 UC','₹599')"><p class="pkg-name">9250 UC</p><p class="pkg-sub">Instant processing</p><p class="pkg-price">₹599</p></div>
+        <div class="pkg-card" onclick="selectPackage(this,'13100 UC','₹699')"><p class="pkg-name">13100 UC</p><p class="pkg-sub">Instant processing</p><p class="pkg-price">₹699</p></div>
+        <div class="pkg-card" onclick="selectPackage(this,'25212 UC','₹799')"><p class="pkg-name">25212 UC</p><p class="pkg-sub">Instant processing</p><p class="pkg-price">₹799</p></div>
+        <div class="pkg-card" onclick="selectPackage(this,'32400 UC','₹899')"><p class="pkg-name">32400 UC</p><p class="pkg-sub">Instant processing</p><p class="pkg-price">₹899</p></div>
+        <div class="pkg-card" onclick="selectPackage(this,'35500 UC','₹999')"><p class="pkg-name">35500 UC</p><p class="pkg-sub">Instant processing</p><p class="pkg-price">₹999</p></div>
+        <div class="pkg-card" onclick="selectPackage(this,'47000 UC','₹1299')"><p class="pkg-name">47000 UC</p><p class="pkg-sub">Instant processing</p><p class="pkg-price">₹1299</p></div>
+        <div class="pkg-card" onclick="selectPackage(this,'56500 UC','₹1499')"><p class="pkg-name">56500 UC</p><p class="pkg-sub">Instant processing</p><p class="pkg-price">₹1499</p></div>
+        <div class="pkg-card" onclick="selectPackage(this,'75500 UC','₹1999')"><p class="pkg-name">75500 UC</p><p class="pkg-sub">Instant processing</p><p class="pkg-price">₹1999</p></div>
+        <div class="pkg-card" onclick="selectPackage(this,'95500 UC','₹2499')"><p class="pkg-name">95500 UC</p><p class="pkg-sub">Instant processing</p><p class="pkg-price">₹2499</p></div>
+        <div class="pkg-card" onclick="selectPackage(this,'125000 UC','₹2999')"><p class="pkg-name">125000 UC</p><p class="pkg-sub">Instant processing</p><p class="pkg-price">₹2999</p></div>
+        <div class="pkg-card" onclick="selectPackage(this,'1850 UC','₹299')"><p class="pkg-name">1850 UC</p><p class="pkg-sub">Instant processing</p><p class="pkg-price">₹299</p></div>
+      </div>
+
+      <!-- Free Fire packages -->
+      <div class="pkg-grid hidden" id="ffPkgs">
+        <div class="pkg-card" onclick="selectPackage(this,'2400 Diamond','₹379')"><p class="pkg-name">2400 Diamond</p><p class="pkg-sub">Instant processing</p><p class="pkg-price">₹379</p></div>
+        <div class="pkg-card" onclick="selectPackage(this,'3800 Diamond','₹549')"><p class="pkg-name">3800 Diamond</p><p class="pkg-sub">Instant processing</p><p class="pkg-price">₹549</p></div>
+        <div class="pkg-card" onclick="selectPackage(this,'5200 Diamond','₹749')"><p class="pkg-name">5200 Diamond</p><p class="pkg-sub">Instant processing</p><p class="pkg-price">₹749</p></div>
+        <div class="pkg-card" onclick="selectPackage(this,'7000 Diamond','₹899')"><p class="pkg-name">7000 Diamond</p><p class="pkg-sub">Instant processing</p><p class="pkg-price">₹899</p></div>
+        <div class="pkg-card" onclick="selectPackage(this,'8200 Diamond','₹999')"><p class="pkg-name">8200 Diamond</p><p class="pkg-sub">Instant processing</p><p class="pkg-price">₹999</p></div>
+        <div class="pkg-card" onclick="selectPackage(this,'10500 Diamond','₹1249')"><p class="pkg-name">10500 Diamond</p><p class="pkg-sub">Instant processing</p><p class="pkg-price">₹1249</p></div>
+        <div class="pkg-card" onclick="selectPackage(this,'14500 Diamond','₹1649')"><p class="pkg-name">14500 Diamond</p><p class="pkg-sub">Instant processing</p><p class="pkg-price">₹1649</p></div>
+        <div class="pkg-card" onclick="selectPackage(this,'21000 Diamond','₹2099')"><p class="pkg-name">21000 Diamond</p><p class="pkg-sub">Instant processing</p><p class="pkg-price">₹2099</p></div>
+      </div>
+    </div>
+
+  </div><!-- end .main-card -->
+
+  <!-- Checkout -->
+  <div class="checkout" id="checkout">
+    <div class="checkout-card">
+      <div class="checkout-summary">
+        <span class="lbl">Selected</span>
+        <span class="val"><span id="coPkg">5400 UC</span> &bull; <span id="coGame">BGMI</span></span>
+      </div>
+      <div class="checkout-total">
+        <span class="lbl">Total</span>
+        <span class="val">₹<span id="coTotal">499</span></span>
+      </div>
+      <button class="pay-btn" onclick="proceedToPay()">Proceed to Pay</button>
+      <p class="pay-footer">By continuing, you agree to our Terms &amp; Privacy. Delivery time can vary during peak events.</p>
+    </div>
+  </div>
+
+  <!-- Why Section -->
+  <div class="why-section">
+    <h3>Why EliteUCHub?</h3>
+    <div class="why-item">
+      <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+      Instant processing for most orders
+    </div>
+    <div class="why-item">
+      <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
+      Secure payment gateways
+    </div>
+    <div class="why-item">
+      <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+      No login required — Player ID only
+    </div>
+    <div class="why-item">
+      <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18.364 5.636l-3.536 3.536m0 5.656l3.536 3.536M9.172 9.172L5.636 5.636m3.536 9.192l-3.536 3.536M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-5 0a4 4 0 11-8 0 4 4 0 018 0z"/></svg>
+      24/7 support on WhatsApp
+    </div>
+  </div>
+
+</main>
+
+<!-- ═══ FOOTER ═══ -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <div class="logo-box"><img src="https://i.postimg.cc/hjJXc4p3/icon.png" alt="Logo" style="width: 100%; height: 100%; object-fit: cover; border-radius: 10px;"></div>
+      <h2>Elite<span>UCHub</span></h2>
+    </div>
+    <p>Secure and fast game top-up services for all your gaming needs.</p>
+    <div class="footer-links">
+      <h3>Quick Links</h3>
+      <a href="#">Privacy Policy</a>
+      <a href="#">Terms of Service</a>
+      <a href="#">Contact Us</a>
+      <a href="#">Refund and Cancellation Policy</a>
+    </div>
+    <div class="footer-copy">© 2026 EliteUCHub. All rights reserved.</div>
+    <div class="footer-tagline">Secure gaming services &bull; Fast delivery</div>
+  </div>
+</footer>
+
+<!-- ═══ SCRIPT ═══ -->
+<script>
+var selectedGame = 'bgmi';
+var selectedPkg  = null;   // { name, price }
+var verified     = false;
+
+/* ── menu ── */
+function toggleMenu() {
+  document.getElementById('sideMenu').classList.toggle('active');
+  document.getElementById('menuOverlay').classList.toggle('active');
+}
+
+/* ── input validation ── */
+function validatePlayerId(input) {
+  input.value = input.value.replace(/[^0-9]/g, '');
+  var err = document.getElementById('errorMsg');
+  if (verified) { verified = false; resetBtn(); }
+  if (input.value.length > 0 && input.value.length < 8) {
+    err.textContent = 'Invalid Player ID format';
+    input.style.borderColor = '#ef4444';
+  } else {
+    err.textContent = '';
+    input.style.borderColor = 'transparent';
+  }
+}
+
+/* ── popup open ── */
+/* ── popup open ── */
+function showPopup() {
+  var val = document.getElementById('playerId').value;
+  var err = document.getElementById('errorMsg');
+  if (!val)            { err.textContent = 'Please enter your Player ID'; return; }
+  if (val.length < 8)  { err.textContent = 'Player ID must be at least 8 digits'; return; }
+  err.textContent = '';
+  
+  // Change button to "Verifying..." state
+  var btn = document.getElementById('verifyBtn');
+  btn.disabled = true;
+  btn.style.background = '#14b8a6';
+  btn.style.color = '#0d1117';
+  document.getElementById('verifyBtnText').textContent = 'Verifying...';
+  
+  // Show popup after 2 seconds
+  setTimeout(function() {
+    document.getElementById('popupPlayerId').textContent = val;
+    document.getElementById('verificationPopup').classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }, 2000);
+}
+
+/* ── popup close ── */
+function closePopup() {
+  document.getElementById('verificationPopup').classList.remove('open');
+  document.body.style.overflow = '';
+  
+  // Reset button if not verified
+  if (!verified) {
+    resetBtn();
+  }
+}
+
+/* ── confirm verification ── */
+function confirmVerification() {
+  verified = true;
+  closePopup();
+  var btn = document.getElementById('verifyBtn');
+  btn.disabled = true;
+  btn.style.background = '#16a34a';
+  document.getElementById('verifyBtnText').textContent = 'Verified ✓';
+  document.getElementById('checkIcon').style.display = 'block';
+  document.getElementById('playerId').style.borderColor = '#22c55e';
+}
+
+/* ── reset button back to purple ── */
+function resetBtn() {
+  var btn = document.getElementById('verifyBtn');
+  btn.disabled = false;
+  btn.style.background = '#2dd4bf';
+  btn.style.color = '#0d1117';
+  document.getElementById('verifyBtnText').textContent = 'Verify Player ID';
+  document.getElementById('checkIcon').style.display = 'none';
+  document.getElementById('playerId').style.borderColor = 'transparent';
+}
+
+/* ── game selection ── */
+function selectGame(game) {
+  selectedGame = game;
+  document.getElementById('cardBgmi').classList.toggle('selected', game === 'bgmi');
+  document.getElementById('cardFf').classList.toggle('selected', game === 'freefire');
+  document.getElementById('bgmiPkgs').classList.toggle('hidden', game !== 'bgmi');
+  document.getElementById('ffPkgs').classList.toggle('hidden', game !== 'freefire');
+  // reset package
+  selectedPkg = null;
+  document.querySelectorAll('.pkg-card').forEach(function(c){ c.classList.remove('selected'); });
+  document.getElementById('checkout').classList.remove('visible');
+}
+
+/* ── package selection ── */
+function selectPackage(el, name, price) {
+  if (!verified) { alert('Please verify your Player ID first'); return; }
+  document.querySelectorAll('.pkg-card').forEach(function(c){ c.classList.remove('selected'); });
+  el.classList.add('selected');
+  selectedPkg = { name: name, price: price };
+  // fill checkout
+  document.getElementById('coGame').textContent  = selectedGame === 'bgmi' ? 'BGMI' : 'Free Fire';
+  document.getElementById('coPkg').textContent   = name;
+  document.getElementById('coTotal').textContent = price.replace('₹','');
+  document.getElementById('checkout').classList.add('visible');
+  setTimeout(function(){ document.getElementById('checkout').scrollIntoView({ behavior:'smooth', block:'nearest' }); }, 80);
+}
+
+/* ── pay ── */
+function proceedToPay() {
+  if (!verified || !selectedPkg) return;
+
+  var now = new Date();
+  var txn = 'TXN' + now.getFullYear()
+          + String(now.getMonth()+1).padStart(2,'0')
+          + String(now.getDate()).padStart(2,'0')
+          + Math.random().toString(36).substring(2,10).toUpperCase();
+
+  var amt = selectedPkg.price.replace('₹','');
+  var pkg = selectedPkg.name + ' ' + (selectedGame === 'bgmi' ? 'BGMI' : 'Free Fire');
+  var pid = document.getElementById('playerId').value;
+
+  fetch("/checkout/", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      "X-CSRFToken": getCookie("csrftoken")
+    },
+    body: JSON.stringify({
+      txnId: txn,
+      amount: amt,
+      package: pkg,
+      playerId: pid
+    })
+  })
+  .then(res => res.json())
+  .then(data => {
+    window.location.href = "/payment/";
+  });
+}
+
+function getCookie(name) {
+  let cookieValue = null;
+  if (document.cookie && document.cookie !== "") {
+    const cookies = document.cookie.split(";");
+    for (let cookie of cookies) {
+           cookie = cookie.trim();
+      if (cookie.substring(0, name.length + 1) === (name + "=")) {
+        cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+        break;
+      }
+    }
+  }
+  return cookieValue;
+}
+
+/* ── navbar glassmorphism on scroll ── */
+(function() {
+  var header = document.querySelector('header');
+  window.addEventListener('scroll', function() {
+    if (window.scrollY > 10) {
+      header.classList.add('scrolled');
+    } else {
+      header.classList.remove('scrolled');
+    }
+  }, { passive: true });
+})();
+</script>
+</body>
+</html>
