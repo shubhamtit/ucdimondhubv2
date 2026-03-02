@@ -65,10 +65,37 @@ header.scrolled {
   background: #1a2535;
 }
 header h1 { font-size: 1.25rem; font-weight: 700; color: #fff; }
+
+/* Desktop nav links */
+.desktop-nav {
+  display: none;
+  align-items: center;
+  gap: 4px;
+}
+.desktop-nav a {
+  color: #94a3b8;
+  font-size: .88rem;
+  font-weight: 500;
+  padding: 7px 12px;
+  border-radius: 8px;
+  transition: color .2s, background .2s;
+  white-space: nowrap;
+}
+.desktop-nav a:hover { color: #fff; background: rgba(255,255,255,0.06); }
+.desktop-nav a.active { color: #2dd4bf; }
+
 .hamburger {
   background: #1a2535; border: none; color: #fff; cursor: pointer;
   padding: 8px; border-radius: 8px;
   display: flex; align-items: center; justify-content: center;
+}
+
+/* ── Responsive: show desktop nav, hide hamburger on wide screens ── */
+@media (min-width: 700px) {
+  .desktop-nav { display: flex; }
+  .hamburger { display: none; }
+  .menu-overlay { display: none !important; }
+  .side-menu { display: none !important; }
 }
 
 /* ───── SIDE MENU ───── */
@@ -410,46 +437,30 @@ label { display: block; color: #94a3b8; font-weight: 500; font-size: .85rem; mar
 <div class="side-menu" id="sideMenu">
   <div class="menu-header">
     <div style="display:flex;align-items:center;gap:10px;">
-      <div class="logo-box">TR</div>
-      <div><h2>UCPlanet</h2><p>Official Store</p></div>
+      <div class="logo-box"><img src="https://i.postimg.cc/WbTV30DJ/ucplanet.png" alt="Logo" style="width:100%;height:100%;object-fit:cover;border-radius:10px;"></div>
+      <div><h2>UCPlanet</h2><p style="font-size:.72rem;color:#64748b;">Official Store</p></div>
     </div>
     <button class="menu-close" onclick="toggleMenu()">✕</button>
   </div>
   <nav>
-    <div class="menu-item" onclick="toggleMenu()">
-      <svg fill="none" stroke="#c084fc" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/></svg>
+    <a class="menu-item" href="/" onclick="toggleMenu()">
+      <svg fill="none" stroke="#2dd4bf" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/></svg>
       Home
-    </div>
-    <!-- <div class="menu-item" onclick="toggleMenu()">
-      <svg fill="none" stroke="#60a5fa" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"/></svg>
-      My Orders
-    </div>
-    <div class="menu-item" onclick="toggleMenu()">
-      <svg fill="none" stroke="#4ade80" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
-      Wallet
-    </div>
-    <div class="menu-item" onclick="toggleMenu()">
-      <svg fill="none" stroke="#facc15" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v13m0-13V6a2 2 0 112 2h-2zm0 0V5.5A2.5 2.5 0 109.5 8H12zm-7 4h14M5 12a2 2 0 110-4h14a2 2 0 110 4M5 12v7a2 2 0 002 2h10a2 2 0 002-2v-7"/></svg>
-      Rewards
-    </div>
-    <div class="menu-item" onclick="toggleMenu()">
-      <svg fill="none" stroke="#f472b6" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z"/></svg>
-      Refer &amp; Earn
-    </div>
+    </a>
     <hr class="menu-divider">
-    <div class="menu-item" onclick="toggleMenu()">
-      <svg fill="none" stroke="#94a3b8" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"/><circle cx="12" cy="12" r="3" stroke-width="2"/></svg>
-      Settings
-    </div>
-    <div class="menu-item" onclick="toggleMenu()">
-      <svg fill="none" stroke="#94a3b8" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
-      Help &amp; Support
-    </div> -->
+    <a class="menu-item" href="/privacy/">
+      <svg fill="none" stroke="#94a3b8" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
+      Privacy Policy
+    </a>
+    <a class="menu-item" href="/terms/">
+      <svg fill="none" stroke="#94a3b8" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"/></svg>
+      Terms of Service
+    </a>
+    <a class="menu-item" href="/refund/">
+      <svg fill="none" stroke="#94a3b8" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 10h10a8 8 0 018 8v2M3 10l6 6m-6-6l6-6"/></svg>
+      Refund Policy
+    </a>
   </nav>
-  <!-- <div class="menu-user">
-    <div class="menu-user-avatar">U</div>
-    <div class="menu-user-info"><p>User Account</p><span><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="3a4f495f487a5f425b574a565f14595557">[email&#160;protected]</a></span></div>
-  </div> -->
 </div>
 
 <!-- ═══ VERIFICATION POPUP ═══ -->
@@ -474,6 +485,14 @@ label { display: block; color: #94a3b8; font-weight: 500; font-size: .85rem; mar
     <div class="logo-box"><img src="https://i.postimg.cc/WbTV30DJ/ucplanet.png" alt="Logo" style="width: 100%; height: 100%; object-fit: cover; border-radius: 12px;"></div>
     <h1>UCPlanet</h1>
   </div>
+  <!-- Desktop nav (visible ≥700px) -->
+  <nav class="desktop-nav">
+    <a href="/" class="active">Home</a>
+    <a href="/privacy/">Privacy Policy</a>
+    <a href="/terms/">Terms of Service</a>
+    <a href="/refund/">Refund Policy</a>
+  </nav>
+  <!-- Mobile hamburger (visible <700px) -->
   <button class="hamburger" onclick="toggleMenu()">
     <svg width="28" height="28" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
   </button>
@@ -720,6 +739,11 @@ function confirmVerification() {
   document.getElementById('verifyBtnText').textContent = 'Verified ✓';
   document.getElementById('checkIcon').style.display = 'block';
   document.getElementById('playerId').style.borderColor = '#22c55e';
+  // Show checkout immediately since a package is already pre-selected
+  if (selectedPkg) {
+    document.getElementById('checkout').classList.add('visible');
+    setTimeout(function(){ document.getElementById('checkout').scrollIntoView({ behavior:'smooth', block:'nearest' }); }, 80);
+  }
 }
 
 /* ── reset button back to purple ── */
@@ -740,10 +764,25 @@ function selectGame(game) {
   document.getElementById('cardFf').classList.toggle('selected', game === 'freefire');
   document.getElementById('bgmiPkgs').classList.toggle('hidden', game !== 'bgmi');
   document.getElementById('ffPkgs').classList.toggle('hidden', game !== 'freefire');
-  // reset package
+  // reset then auto-select first package of the chosen game
   selectedPkg = null;
   document.querySelectorAll('.pkg-card').forEach(function(c){ c.classList.remove('selected'); });
   document.getElementById('checkout').classList.remove('visible');
+  var gridId = game === 'bgmi' ? 'bgmiPkgs' : 'ffPkgs';
+  var firstPkg = document.querySelector('#' + gridId + ' .pkg-card');
+  if (firstPkg) {
+    var name  = firstPkg.querySelector('.pkg-name').textContent;
+    var price = firstPkg.querySelector('.pkg-price').textContent;
+    firstPkg.classList.add('selected');
+    selectedPkg = { name: name, price: price };
+    document.getElementById('coGame').textContent  = game === 'bgmi' ? 'BGMI' : 'Free Fire';
+    document.getElementById('coPkg').textContent   = name;
+    document.getElementById('coTotal').textContent = price.replace('₹','');
+    // If already verified, keep checkout visible with updated package
+    if (verified) {
+      document.getElementById('checkout').classList.add('visible');
+    }
+  }
 }
 
 /* ── package selection ── */
@@ -752,12 +791,11 @@ function selectPackage(el, name, price) {
   document.querySelectorAll('.pkg-card').forEach(function(c){ c.classList.remove('selected'); });
   el.classList.add('selected');
   selectedPkg = { name: name, price: price };
-  // fill checkout
+  // update checkout details
   document.getElementById('coGame').textContent  = selectedGame === 'bgmi' ? 'BGMI' : 'Free Fire';
   document.getElementById('coPkg').textContent   = name;
   document.getElementById('coTotal').textContent = price.replace('₹','');
   document.getElementById('checkout').classList.add('visible');
-  setTimeout(function(){ document.getElementById('checkout').scrollIntoView({ behavior:'smooth', block:'nearest' }); }, 80);
 }
 
 /* ── pay ── */
