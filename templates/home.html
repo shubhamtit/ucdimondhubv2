@@ -188,11 +188,13 @@ main { padding: 20px 16px 80px; max-width: 480px; margin: 0 auto; }
 .game-card {
   background: #0f1720;
   border-radius: 12px;
-  padding: 14px 12px;
+  padding: 10px 10px;
   cursor: pointer;
-  display: flex; align-items: center; gap: 12px;
+  display: flex; align-items: center; gap: 10px;
   border: 2px solid rgba(255,255,255,0.05);
   transition: border-color .2s, transform .15s, box-shadow .2s;
+  min-height: 0;
+  overflow: hidden;
 }
 .game-card:active { transform: scale(.97); }
 .game-card.selected {
@@ -203,25 +205,26 @@ main { padding: 20px 16px 80px; max-width: 480px; margin: 0 auto; }
 
 /* icon (game thumbnail) */
 .game-card-icon {
-  width: 52px; height: 52px; min-width: 52px;
-  border-radius: 12px;
+  width: 40px; height: 40px; min-width: 40px;
+  border-radius: 10px;
   display: flex; align-items: center; justify-content: center;
   position: relative;
   overflow: hidden;
   background: #080c10;
-  padding: 3px;
+  padding: 2px;
+  flex-shrink: 0;
 }
 .game-card-icon img {
   width: 100%; height: 100%;
   object-fit: contain;
-  border-radius: 9px;
+  border-radius: 8px;
   display: block;
 }
 
 /* text block to the right of the icon */
-.game-card-text { display: flex; flex-direction: column; }
-.game-card p.name { font-weight: 700; font-size: .95rem; line-height: 1.3; }
-.game-card p.sub  { color: #64748b; font-size: .75rem; margin-top: 2px; }
+.game-card-text { display: flex; flex-direction: column; min-width: 0; flex: 1; }
+.game-card p.name { font-weight: 700; font-size: .85rem; line-height: 1.2; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.game-card p.sub  { color: #64748b; font-size: .68rem; margin-top: 2px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 
 .badge-max {
   position: absolute; top: -6px; right: -6px;
