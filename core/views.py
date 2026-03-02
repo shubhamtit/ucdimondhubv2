@@ -85,3 +85,13 @@ def payment(request):
         "qr_url": qr_url,
         "qr_name": qr.name if qr else None
     })
+
+
+def privacy(request):
+    return render(request,'privacy.html')
+
+def terms(request):
+    return render(request,'terms.html')
+
+def refund(request):
+    return render(request,'refund.html')

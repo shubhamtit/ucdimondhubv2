@@ -1,0 +1,521 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" type="image/jpeg" href="https://i.postimg.cc/WbTV30DJ/ucplanet.png">
+<title>Refund & Cancellation Policy - UCPlanet</title>
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  background: #080c10;
+  min-height: 100vh;
+  color: #fff;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+a { color: inherit; text-decoration: none; }
+
+/* ───── HEADER ───── */
+header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 18px;
+  background: rgba(8,12,16,0.92);
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+  position: sticky; top: 0; z-index: 100;
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+}
+.header-logo { display: flex; align-items: center; gap: 12px; }
+.logo-box {
+  width: 44px; height: 44px; border-radius: 10px;
+  overflow: hidden; background: #1a2535;
+  display: flex; align-items: center; justify-content: center;
+}
+.logo-box img { width: 100%; height: 100%; object-fit: cover; border-radius: 10px; }
+header h1 { font-size: 1.25rem; font-weight: 700; color: #fff; }
+.hamburger {
+  background: #1a2535; border: none; color: #fff; cursor: pointer;
+  padding: 8px; border-radius: 8px;
+  display: flex; align-items: center; justify-content: center;
+}
+
+/* ───── SIDE MENU ───── */
+.menu-overlay {
+  position: fixed; inset: 0; z-index: 999;
+  background: rgba(0,0,0,0.7);
+  opacity: 0; visibility: hidden;
+  transition: opacity .3s, visibility .3s;
+}
+.menu-overlay.active { opacity: 1; visibility: visible; }
+.side-menu {
+  position: fixed; top: 0; right: -100%; width: 80%; max-width: 320px;
+  height: 100vh; background: #0e1520;
+  z-index: 1000; transition: right .3s ease;
+  box-shadow: -5px 0 20px rgba(0,0,0,.5);
+  overflow-y: auto;
+  border-left: 1px solid rgba(255,255,255,0.06);
+}
+.side-menu.active { right: 0; }
+.menu-header {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 24px 20px 16px;
+  border-bottom: 1px solid #1e2a3a;
+}
+.menu-header h2 { font-size: 1.1rem; font-weight: 700; }
+.menu-header p { font-size: .72rem; color: #64748b; }
+.menu-close { background: none; border: none; color: #64748b; cursor: pointer; font-size: 24px; line-height: 1; }
+.menu-item {
+  display: flex; align-items: center; gap: 16px;
+  padding: 14px 20px; cursor: pointer; transition: background .2s;
+  color: #cbd5e1; font-weight: 500; font-size: .95rem;
+}
+.menu-item:active { background: rgba(45,212,191,.1); }
+.menu-item svg { width: 22px; height: 22px; flex-shrink: 0; }
+.menu-divider { border: none; border-top: 1px solid #1e2a3a; margin: 8px 0; }
+
+/* ───── BREADCRUMB ───── */
+.breadcrumb {
+  padding: 16px 18px 0;
+  max-width: 680px;
+  margin: 0 auto;
+  display: flex; align-items: center; gap: 6px;
+  font-size: .82rem; color: #64748b;
+}
+.breadcrumb a { color: #64748b; transition: color .2s; }
+.breadcrumb a:hover { color: #2dd4bf; }
+.breadcrumb svg { width: 14px; height: 14px; flex-shrink: 0; }
+.breadcrumb span { color: #94a3b8; }
+
+/* ───── PAGE TITLE ───── */
+.page-title {
+  padding: 14px 18px 20px;
+  max-width: 680px;
+  margin: 0 auto;
+}
+.page-title h2 {
+  font-size: 1.75rem; font-weight: 800;
+  letter-spacing: -.02em;
+}
+
+/* ───── MAIN ───── */
+main {
+  padding: 0 16px 60px;
+  max-width: 680px;
+  margin: 0 auto;
+}
+
+/* ───── POLICY CARD ───── */
+.policy-card {
+  background: #161f2c;
+  border-radius: 20px;
+  padding: 28px 22px;
+  border: 1px solid rgba(45,212,191,0.2);
+  box-shadow: 0 0 18px rgba(45,212,191,0.07), 0 0 40px rgba(45,212,191,0.04);
+  margin-bottom: 20px;
+}
+.policy-card h3 {
+  font-size: 1.25rem; font-weight: 800;
+  margin-bottom: 16px; color: #fff;
+}
+
+.policy-intro {
+  color: #94a3b8; font-size: .9rem; line-height: 1.65;
+  margin-bottom: 20px;
+}
+.policy-intro strong { color: #fff; font-weight: 700; }
+
+.policy-section { margin-bottom: 22px; }
+.policy-section:last-child { margin-bottom: 0; }
+
+.policy-section h4 {
+  font-size: .92rem; font-weight: 700;
+  color: #e2e8f0; margin-bottom: 12px;
+  display: flex; align-items: center; gap: 8px;
+}
+.policy-section h4 .dot {
+  width: 6px; height: 6px; border-radius: 50%;
+  background: #2dd4bf; flex-shrink: 0;
+  box-shadow: 0 0 6px rgba(45,212,191,0.6);
+}
+
+.policy-list {
+  list-style: none; display: flex; flex-direction: column; gap: 8px;
+}
+.policy-list li {
+  display: flex; align-items: flex-start; gap: 10px;
+  color: #94a3b8; font-size: .88rem; line-height: 1.5;
+}
+.policy-list li::before {
+  content: '';
+  width: 5px; height: 5px; border-radius: 50%;
+  background: #2dd4bf; flex-shrink: 0;
+  margin-top: 7px; opacity: 0.7;
+}
+
+.policy-text {
+  color: #94a3b8; font-size: .88rem; line-height: 1.65;
+}
+.policy-text strong { color: #e2e8f0; font-weight: 700; }
+
+.policy-divider {
+  border: none;
+  border-top: 1px solid rgba(255,255,255,0.06);
+  margin: 20px 0;
+}
+
+/* ───── INFO BOX (teal) ───── */
+.highlight-box {
+  background: rgba(45,212,191,0.06);
+  border: 1px solid rgba(45,212,191,0.18);
+  border-radius: 12px;
+  padding: 14px 16px;
+  display: flex; align-items: flex-start; gap: 12px;
+  margin-top: 14px;
+}
+.highlight-box svg { width: 18px; height: 18px; color: #2dd4bf; flex-shrink: 0; margin-top: 1px; }
+.highlight-box p { color: #94a3b8; font-size: .83rem; line-height: 1.55; }
+.highlight-box p strong { color: #2dd4bf; }
+
+/* ───── WARNING BOX (red) ───── */
+.warning-box {
+  background: rgba(239,68,68,0.06);
+  border: 1px solid rgba(239,68,68,0.2);
+  border-radius: 12px;
+  padding: 14px 16px;
+  display: flex; align-items: flex-start; gap: 12px;
+  margin-top: 14px;
+}
+.warning-box svg { width: 18px; height: 18px; color: #f87171; flex-shrink: 0; margin-top: 1px; }
+.warning-box p { color: #94a3b8; font-size: .83rem; line-height: 1.55; }
+.warning-box p strong { color: #f87171; }
+
+/* ───── ELIGIBLE / NOT-ELIGIBLE TABLE ───── */
+.verdict-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  margin-top: 14px;
+}
+.verdict-col {
+  border-radius: 12px;
+  padding: 14px 12px;
+}
+.verdict-col.yes {
+  background: rgba(34,197,94,0.06);
+  border: 1px solid rgba(34,197,94,0.2);
+}
+.verdict-col.no {
+  background: rgba(239,68,68,0.06);
+  border: 1px solid rgba(239,68,68,0.2);
+}
+.verdict-col h5 {
+  font-size: .78rem; font-weight: 700;
+  text-transform: uppercase; letter-spacing: .05em;
+  margin-bottom: 10px;
+  display: flex; align-items: center; gap: 6px;
+}
+.verdict-col.yes h5 { color: #22c55e; }
+.verdict-col.no  h5 { color: #f87171; }
+.verdict-col h5 svg { width: 14px; height: 14px; }
+.verdict-col ul { list-style: none; display: flex; flex-direction: column; gap: 6px; }
+.verdict-col ul li { font-size: .78rem; color: #94a3b8; line-height: 1.4; }
+
+/* ───── STEPS ───── */
+.steps-list { display: flex; flex-direction: column; gap: 10px; margin-top: 4px; }
+.step-item {
+  display: flex; align-items: flex-start; gap: 12px;
+}
+.step-num {
+  width: 24px; height: 24px; border-radius: 50%;
+  background: rgba(45,212,191,0.15);
+  border: 1px solid rgba(45,212,191,0.3);
+  color: #2dd4bf; font-size: .72rem; font-weight: 800;
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0; margin-top: 1px;
+}
+.step-text { color: #94a3b8; font-size: .87rem; line-height: 1.5; }
+.step-text strong { color: #e2e8f0; }
+
+/* ───── BACK BUTTON ───── */
+.back-wrap { display: flex; justify-content: center; margin-top: 8px; }
+.back-btn {
+  display: inline-flex; align-items: center; gap: 8px;
+  background: #2dd4bf; color: #0d1117;
+  border: none; border-radius: 10px;
+  padding: 13px 28px; font-size: .95rem; font-weight: 700;
+  cursor: pointer; transition: background .2s, transform .15s;
+  text-decoration: none;
+}
+.back-btn:active { background: #14b8a6; transform: scale(.97); }
+.back-btn svg { width: 18px; height: 18px; }
+
+/* ───── FOOTER ───── */
+footer {
+  background: #0a0f16;
+  border-top: 1px solid rgba(255,255,255,0.06);
+  padding: 32px 18px 24px;
+}
+.footer-inner { max-width: 680px; margin: 0 auto; }
+.footer-brand { display: flex; align-items: center; gap: 10px; margin-bottom: 10px; }
+.footer-brand h2 { font-size: 1.1rem; font-weight: 800; }
+.footer-brand h2 span { color: #2dd4bf; }
+footer > .footer-inner > p { color: #64748b; font-size: .82rem; margin-bottom: 20px; }
+.footer-links h3 { font-size: .8rem; font-weight: 700; color: #94a3b8; text-transform: uppercase; letter-spacing: .06em; margin-bottom: 10px; }
+.footer-links { display: flex; flex-direction: column; gap: 8px; margin-bottom: 20px; }
+.footer-links a { color: #64748b; font-size: .85rem; transition: color .2s; }
+.footer-links a:hover { color: #2dd4bf; }
+.footer-copy { color: #334155; font-size: .78rem; }
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header>
+  <div class="header-logo">
+    <div class="logo-box">
+      <img src="https://i.postimg.cc/WbTV30DJ/ucplanet.png" alt="UCPlanet Logo">
+    </div>
+    <h1>UCPlanet</h1>
+  </div>
+  <button class="hamburger" onclick="toggleMenu()" aria-label="Menu">
+    <svg width="22" height="22" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+    </svg>
+  </button>
+</header>
+
+<!-- SIDE MENU -->
+<div class="menu-overlay" id="menuOverlay" onclick="toggleMenu()"></div>
+<nav class="side-menu" id="sideMenu">
+  <div class="menu-header">
+    <div style="display:flex;align-items:center;gap:10px;">
+      <div class="logo-box" style="width:36px;height:36px;">
+        <img src="https://i.postimg.cc/WbTV30DJ/ucplanet.png" alt="Logo" style="width:100%;height:100%;object-fit:cover;border-radius:8px;">
+      </div>
+      <div>
+        <h2>UCPlanet</h2>
+        <p>Game Top-Up Store</p>
+      </div>
+    </div>
+    <button class="menu-close" onclick="toggleMenu()">✕</button>
+  </div>
+  <a href="/" class="menu-item">
+    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/></svg>
+    Home
+  </a>
+  <hr class="menu-divider">
+  <a href="/privacy/" class="menu-item">
+    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
+    Privacy Policy
+  </a>
+  <a href="/terms/" class="menu-item">
+    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"/></svg>
+    Terms of Service
+  </a>
+  <a href="/refund/" class="menu-item" style="color:#2dd4bf;">
+    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 10h10a8 8 0 018 8v2M3 10l6 6m-6-6l6-6"/></svg>
+    Refund Policy
+  </a>
+</nav>
+
+<!-- BREADCRUMB -->
+<div class="breadcrumb">
+  <a href="/">Home</a>
+  <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+  <span>Refund & Cancellation Policy</span>
+</div>
+
+<!-- PAGE TITLE -->
+<div class="page-title">
+  <h2>Refund & Cancellation Policy</h2>
+</div>
+
+<!-- MAIN -->
+<main>
+  <div class="policy-card">
+    <h3>Refund & Cancellation Policy</h3>
+
+    <p class="policy-intro">
+      At <strong>UCPlanet</strong>, we strive to ensure every order is delivered accurately and instantly. Please read this policy carefully before making a purchase so you understand when refunds and cancellations apply.
+    </p>
+
+    <hr class="policy-divider">
+
+    <!-- 1. General Rule -->
+    <div class="policy-section">
+      <h4><span class="dot"></span>1. General Rule</h4>
+      <p class="policy-text">
+        Because top-up credits (<strong>UC</strong> and <strong>Diamonds</strong>) are delivered directly to your in-game account, all sales are <strong>final once the top-up has been successfully delivered</strong>. Digital goods cannot be returned once credited to a game account.
+      </p>
+      <div class="warning-box">
+        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/>
+        </svg>
+        <p><strong>No refunds</strong> will be issued for successfully delivered orders under any circumstance, including accidental purchases or change of mind.</p>
+      </div>
+    </div>
+
+    <hr class="policy-divider">
+
+    <!-- 2. When You Are Eligible -->
+    <div class="policy-section">
+      <h4><span class="dot"></span>2. Refund Eligibility</h4>
+      <p class="policy-text">Refunds are only considered in the following specific situations:</p>
+      <div class="verdict-grid">
+        <div class="verdict-col yes">
+          <h5>
+            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg>
+            Eligible
+          </h5>
+          <ul>
+            <li>Top-up was not delivered within 24 hours of payment</li>
+            <li>Wrong amount credited due to our error</li>
+            <li>Double payment charged for the same order</li>
+            <li>Payment deducted but order never processed</li>
+          </ul>
+        </div>
+        <div class="verdict-col no">
+          <h5>
+            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M6 18L18 6M6 6l12 12"/></svg>
+            Not Eligible
+          </h5>
+          <ul>
+            <li>Top-up delivered successfully to your account</li>
+            <li>Wrong Player ID entered by the customer</li>
+            <li>Change of mind after payment</li>
+            <li>In-game ban by Krafton or Garena after delivery</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <hr class="policy-divider">
+
+    <!-- 3. Wrong Player ID -->
+    <div class="policy-section">
+      <h4><span class="dot"></span>3. Wrong Player ID</h4>
+      <p class="policy-text">
+        UCPlanet is <strong>not responsible</strong> for top-ups delivered to an incorrect Player ID provided by the customer. We strongly recommend verifying your Player ID using our in-page verification tool before completing your order. If a wrong ID was entered, we will attempt to assist on a best-effort basis but <strong>cannot guarantee recovery</strong> of the credits.
+      </p>
+      <div class="highlight-box">
+        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+        </svg>
+        <p>Always use the <strong>Verify Player ID</strong> button on the home page before paying. This confirms your in-game username before any money changes hands.</p>
+      </div>
+    </div>
+
+    <hr class="policy-divider">
+
+    <!-- 4. Cancellations -->
+    <div class="policy-section">
+      <h4><span class="dot"></span>4. Order Cancellations</h4>
+      <p class="policy-text">
+        Orders can only be cancelled <strong>before payment is completed</strong>. Once payment is confirmed and the top-up process has started, cancellation is not possible. If your payment was deducted but the order was not initiated on our end, please contact support immediately.
+      </p>
+    </div>
+
+    <hr class="policy-divider">
+
+    <!-- 5. How to Request -->
+    <div class="policy-section">
+      <h4><span class="dot"></span>5. How to Request a Refund</h4>
+      <p class="policy-text" style="margin-bottom:12px;">If you believe you are eligible for a refund, follow these steps:</p>
+      <div class="steps-list">
+        <div class="step-item">
+          <div class="step-num">1</div>
+          <div class="step-text">Contact us via <strong>WhatsApp support</strong> within <strong>24 hours</strong> of your order.</div>
+        </div>
+        <div class="step-item">
+          <div class="step-num">2</div>
+          <div class="step-text">Provide your <strong>Transaction ID</strong>, Player ID, and a screenshot of your payment confirmation.</div>
+        </div>
+        <div class="step-item">
+          <div class="step-num">3</div>
+          <div class="step-text">Our team will review your case and respond within <strong>2–4 hours</strong>.</div>
+        </div>
+        <div class="step-item">
+          <div class="step-num">4</div>
+          <div class="step-text">If approved, refunds are processed back to the <strong>original payment method</strong> within 5–7 business days.</div>
+        </div>
+      </div>
+    </div>
+
+    <hr class="policy-divider">
+
+    <!-- 6. Processing Time -->
+    <div class="policy-section">
+      <h4><span class="dot"></span>6. Refund Processing Time</h4>
+      <ul class="policy-list">
+        <li>UPI payments — refunded within 1–3 business days</li>
+        <li>Bank transfers — refunded within 5–7 business days</li>
+        <li>Wallet payments — refunded within 1–2 business days</li>
+      </ul>
+      <p class="policy-text" style="margin-top:10px;">
+        Actual timelines may vary depending on your bank or payment provider. UCPlanet is not responsible for delays caused by third-party payment processors.
+      </p>
+    </div>
+
+    <hr class="policy-divider">
+
+    <!-- 7. Fraudulent Claims -->
+    <div class="policy-section">
+      <h4><span class="dot"></span>7. Fraudulent Refund Claims</h4>
+      <p class="policy-text">
+        Any attempt to claim a refund for a successfully delivered order, or to initiate a chargeback through your bank without contacting us first, will result in a <strong>permanent ban</strong> from UCPlanet services and may be reported to relevant authorities.
+      </p>
+    </div>
+
+    <div class="highlight-box" style="margin-top:4px;">
+      <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+      </svg>
+      <p>For any refund or cancellation queries, reach out to us on <strong>WhatsApp support</strong>. We are available 24/7 and respond within a few hours. <strong>Last updated: March 2026.</strong></p>
+    </div>
+
+  </div>
+
+  <!-- BACK BUTTON -->
+  <div class="back-wrap">
+    <a href="/" class="back-btn">
+      <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"/>
+      </svg>
+      Back to Home
+    </a>
+  </div>
+</main>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <div class="logo-box">
+        <img src="https://i.postimg.cc/WbTV30DJ/ucplanet.png" alt="Logo" style="width:100%;height:100%;object-fit:cover;border-radius:10px;">
+      </div>
+      <h2>UC<span>Planet</span></h2>
+    </div>
+    <p>Secure and fast game top-up services for all your gaming needs.</p>
+    <div class="footer-links">
+      <h3>Quick Links</h3>
+      <a href="/privacy/">Privacy Policy</a>
+      <a href="/terms/">Terms of Service</a>
+      <a href="/contact/">Contact Us</a>
+      <a href="/refund/">Refund and Cancellation Policy</a>
+    </div>
+    <div class="footer-copy">© 2026 UCPlanet. All rights reserved.</div>
+  </div>
+</footer>
+
+<script>
+function toggleMenu() {
+  document.getElementById('sideMenu').classList.toggle('active');
+  document.getElementById('menuOverlay').classList.toggle('active');
+}
+</script>
+</body>
+</html>
