@@ -139,7 +139,7 @@ main { padding: 20px 16px 80px; max-width: 480px; margin: 0 auto; }
   border: none;
 }
 .section-card h3 { font-size: 1.1rem; font-weight: 700; margin-bottom: 18px; }
-.section-title-row { display: flex; align-items: center; gap: 10px; margin-bottom: 18px; }
+.section-title-row { display: flex; align-items: center; gap: 10px; margin-bottom: 10px; }
 .section-title-row svg { width: 20px; height: 20px; flex-shrink: 0; }
 .section-title-row h3 { margin-bottom: 0; font-size: 1.05rem; }
 
@@ -148,7 +148,7 @@ main { padding: 20px 16px 80px; max-width: 480px; margin: 0 auto; }
   position: relative;
   background: #161f2c;
   border-radius: 20px;
-  padding: 24px 18px;
+  padding: 16px 14px;
   margin-bottom: 16px;
   border: 1px solid rgba(45, 212, 191, 0.3);
   box-shadow:
@@ -160,7 +160,7 @@ main { padding: 20px 16px 80px; max-width: 480px; margin: 0 auto; }
 .card-divider {
   border: none;
   border-top: 1px solid rgba(255,255,255,0.06);
-  margin: 22px 0;
+  margin: 14px 0;
 }
 
 /* ───── GAME SECTION ───── */
@@ -178,7 +178,7 @@ main { padding: 20px 16px 80px; max-width: 480px; margin: 0 auto; }
   margin-bottom: 6px;
 }
 .game-section-wrap .subtitle {
-  color: #64748b; font-size: .88rem; margin-bottom: 20px;
+  color: #64748b; font-size: .88rem; margin-bottom: 12px;
 }
 
 /* ───── GAME CARDS ───── */
@@ -195,6 +195,7 @@ main { padding: 20px 16px 80px; max-width: 480px; margin: 0 auto; }
   transition: border-color .2s, transform .15s, box-shadow .2s;
   min-height: 0;
   overflow: hidden;
+  aspect-ratio: 2.4 / 1;
 }
 .game-card:active { transform: scale(.97); }
 .game-card.selected {
@@ -223,8 +224,8 @@ main { padding: 20px 16px 80px; max-width: 480px; margin: 0 auto; }
 
 /* text block to the right of the icon */
 .game-card-text { display: flex; flex-direction: column; min-width: 0; flex: 1; }
-.game-card p.name { font-weight: 700; font-size: .85rem; line-height: 1.2; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-.game-card p.sub  { color: #64748b; font-size: .68rem; margin-top: 2px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.game-card p.name { font-weight: 700; font-size: .82rem; line-height: 1.2; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.game-card p.sub  { color: #64748b; font-size: .63rem; margin-top: 2px; line-height: 1.25; white-space: normal; }
 
 .badge-max {
   position: absolute; top: -6px; right: -6px;
@@ -249,7 +250,7 @@ main { padding: 20px 16px 80px; max-width: 480px; margin: 0 auto; }
 .error-msg { color: #f87171; font-size: .82rem; margin-top: 6px; min-height: 18px; }
 .security-note {
   display: flex; align-items: flex-start; gap: 8px;
-  color: #4a5568; font-size: .8rem; margin: 10px 0 16px;
+  color: #4a5568; font-size: .8rem; margin: 6px 0 10px;
 }
 .security-note svg { width: 16px; height: 16px; flex-shrink: 0; margin-top: 2px; }
 
@@ -817,6 +818,16 @@ function getCookie(name) {
       header.classList.remove('scrolled');
     }
   }, { passive: true });
+
+  // Auto-select the ₹399 (4200 UC) package by default
+  var firstPkg = document.querySelector('#bgmiPkgs .pkg-card');
+  if (firstPkg) {
+    firstPkg.classList.add('selected');
+    selectedPkg = { name: '4200 UC', price: '₹399' };
+    document.getElementById('coGame').textContent  = 'BGMI';
+    document.getElementById('coPkg').textContent   = '4200 UC';
+    document.getElementById('coTotal').textContent = '399';
+  }
 })();
 </script>
 </body>
