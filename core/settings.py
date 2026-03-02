@@ -84,16 +84,16 @@ WSGI_APPLICATION = 'core.wsgi.application'
 # }
 
 # postgresql://postgres:RxAvSBPspnbQicAEPlagbfznwQhkBFki@shortline.proxy.rlwy.net:28598/railway
-
+#postgresql://postgres:HSUxGrVCcoOaoCotteEcXaQzjZchLRbp@yamabiko.proxy.rlwy.net:53193/railway
 
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME':'railway',
         'USER': 'postgres',
-        'PASSWORD': 'RxAvSBPspnbQicAEPlagbfznwQhkBFki',
-        'HOST': 'shortline.proxy.rlwy.net',
-        'PORT': '28598',
+        'PASSWORD': 'HSUxGrVCcoOaoCotteEcXaQzjZchLRbp',
+        'HOST': 'yamabiko.proxy.rlwy.net',
+        'PORT': '53193',
     }
 }
 
